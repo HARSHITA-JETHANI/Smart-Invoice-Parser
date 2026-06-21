@@ -3,6 +3,7 @@ const upload = require("../middleware/upload.middleware");
 const {extractTextFromPDF} = require("../services/pdf.service");
 const {classifyPDF} = require("../services/classifier.service");
 const {classifyDocument} = require("../services/documentClassifier.service");
+const {extractTextFromImage} = require("../services/ocr.service");
 
 const router = express.Router();
 
@@ -18,11 +19,14 @@ router.post(
 
             if (documentType === "image") {
 
+                const extractedText =
+                    await extractTextFromImage(req.file.path);
+
                 return res.json({
                     success: true,
                     filename: req.file.originalname,
                     documentType,
-                    message: "Image detected. OCR pipeline will be used."
+                    extractedText
                 });
 
             }
