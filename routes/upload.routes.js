@@ -4,6 +4,7 @@ const {extractTextFromPDF} = require("../services/pdf.service");
 const {classifyPDF} = require("../services/classifier.service");
 const {classifyDocument} = require("../services/documentClassifier.service");
 const {extractTextFromImage} = require("../services/ocr.service");
+const {preprocessImage} = require("../services/imagePreprocessor.service");
 
 const router = express.Router();
 
@@ -19,8 +20,11 @@ router.post(
 
             if (documentType === "image") {
 
+                const processedImagePath =
+                    await preprocessImage(req.file.path);
+
                 const extractedText =
-                    await extractTextFromImage(req.file.path);
+                    await extractTextFromImage(processedImagePath);
 
                 return res.json({
                     success: true,
