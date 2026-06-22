@@ -6,6 +6,8 @@ const {classifyDocument} = require("../services/documentClassifier.service");
 const {extractTextFromImage} = require("../services/ocr.service");
 const {preprocessImage} = require("../services/imagePreprocessor.service");
 const {extractInvoiceNumber} = require("../services/invoiceExtractor.service");
+const {extractInvoiceData} = require("../services/llmExtractor.service");
+const {saveInvoice} = require("../services/invoice.service");
 
 const router = express.Router();
 
@@ -27,15 +29,18 @@ router.post(
                 const extractedText =
                     await extractTextFromImage(processedImagePath);
 
-                const invoiceNumber =
-                    extractInvoiceNumber(extractedText);
+                const invoiceData =
+                    await extractInvoiceData(extractedText);
+
+                const invoiceId =
+                    await saveInvoice(invoiceData);
 
                 return res.json({
                     success: true,
                     filename: req.file.originalname,
                     documentType,
-                    invoiceNumber,
-                    extractedText
+                    invoiceId,
+                    invoiceData
                 });
 
             }
@@ -46,16 +51,19 @@ router.post(
             const classification =
                 classifyPDF(extractedText);
 
-            const invoiceNumber =
-                extractInvoiceNumber(extractedText);
+            const invoiceData =
+                await extractInvoiceData(extractedText);
+
+            const invoiceId =
+                await saveInvoice(invoiceData);
 
             res.json({
                 success: true,
                 filename: req.file.originalname,
                 documentType,
                 classification,
-                invoiceNumber,
-                extractedText
+                invoiceId,
+                invoiceData
             });
 
         } catch (error) {

@@ -30,7 +30,12 @@ ${text}
         contents: prompt
     });
 
-    return response.text;
+    const cleanedResponse = response.text
+        .replace(/```json/g, "")
+        .replace(/```/g, "")
+        .trim();
+
+    return JSON.parse(cleanedResponse);
 }
 
 module.exports = {
