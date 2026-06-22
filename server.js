@@ -11,11 +11,15 @@ const app = express();
 
 const PORT = 3000;
 
+app.use(express.json());
+
 app.use(logger);
 
 app.use("/api/invoices", invoiceRoutes);
 
 app.use("/api/upload", uploadRoutes);
+
+app.use("/api/invoices", invoiceRoutes);
 
 app.use(errorHandler);
 
