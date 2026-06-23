@@ -1,4 +1,4 @@
-function InvoiceTable({invoices, onDelete}) {
+function InvoiceTable({invoices, onDelete, onEdit}) {
 
     return (
 
@@ -37,9 +37,7 @@ function InvoiceTable({invoices, onDelete}) {
 
                         <td>
 
-                            <button>
-                                Edit
-                            </button>
+                            
 
                             <button onClick={() => onDelete(invoice.id)}>
                                 Delete
