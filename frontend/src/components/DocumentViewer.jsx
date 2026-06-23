@@ -3,9 +3,7 @@ function DocumentViewer({ file }) {
     if (!file) {
 
         return (
-
             <div>
-
                 <h2>
                     Original Document
                 </h2>
@@ -13,11 +11,8 @@ function DocumentViewer({ file }) {
                 <p>
                     No document uploaded
                 </p>
-
             </div>
-
         );
-
     }
 
     const fileURL =
@@ -57,9 +52,7 @@ function DocumentViewer({ file }) {
             </h2>
 
             <img
-                src={fileURL}
-                alt="Invoice"
-                width="500"
+                src={fileURL} alt="Invoice" width="500"
             />
 
         </div>

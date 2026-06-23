@@ -15,8 +15,7 @@ function DashboardPage() {
 
         try {
 
-            const formData =
-                new FormData();
+            const formData =new FormData();
 
             formData.append(
                 "invoice",
@@ -31,9 +30,7 @@ function DashboardPage() {
                     formData
                 );
 
-            setInvoiceData(
-                response.data.invoiceData
-            );
+            setInvoiceData(response.data.invoiceData);
 
         } catch (error) {
 
@@ -42,6 +39,7 @@ function DashboardPage() {
         }
 
     };
+    
 
     return (
     
@@ -59,12 +57,7 @@ function DashboardPage() {
 
             <hr />
 
-            <div
-                style={{
-                    display: "flex",
-                    gap: "20px"
-                }}
-            >
+            <div style={{display: "flex",gap: "20px"}}>
 
                 <DocumentViewer file={selectedFile}/>
 
@@ -75,7 +68,6 @@ function DashboardPage() {
         </>
 
     );
-
 }
 
 
