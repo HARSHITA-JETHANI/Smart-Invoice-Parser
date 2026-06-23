@@ -1,3 +1,4 @@
+const cors = require("cors");
 require("dotenv").config();
 
 const express = require("express");
@@ -8,6 +9,7 @@ const uploadRoutes = require("./routes/upload.routes");
 const errorHandler = require("./middleware/error.middleware");
 
 const app = express();
+app.use(cors());
 
 const PORT = 3000;
 
