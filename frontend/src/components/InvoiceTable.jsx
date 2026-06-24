@@ -2,7 +2,7 @@ function InvoiceTable({invoices, onDelete, onEdit}) {
 
     return (
 
-        <table border="1">
+        <table className="invoice-table">
 
             <thead>
 

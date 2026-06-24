@@ -1,3 +1,4 @@
+import "../InvoicesPage.css";
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import api from "../services/api";
@@ -78,23 +79,29 @@ function InvoicesPage() {
 
         <Navbar />
 
-        <h1>Invoice History</h1>
+        <div className="invoices-page">
 
-        <InvoiceTable
-            invoices={invoices}
-            onDelete={handleDelete}
-            onEdit={handleEdit}
-        />
+            <h1 className="invoices-title">Invoice History</h1>
 
-        {
-            editingInvoice && (
+            <div className="table-container">
 
-                <EditInvoiceForm
-                    invoice={editingInvoice}
+                <InvoiceTable
+                    invoices={invoices}
+                    onDelete={handleDelete}
+                    onEdit={handleEdit}
                 />
 
-            )
-        }
+                {
+                    editingInvoice && (
+
+                        <EditInvoiceForm
+                            invoice={editingInvoice}
+                        />
+
+                    )
+                }
+            </div>
+        </div>
 
     </div>
 );

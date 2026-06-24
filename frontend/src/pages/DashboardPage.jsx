@@ -43,9 +43,11 @@ function DashboardPage() {
 
     return (
     
-        <>
+        <div>
 
             <Navbar />
+
+            <div style={{padding: "30px"}}>
 
             <h1>Dashboard</h1>
 
@@ -57,15 +59,22 @@ function DashboardPage() {
 
             <hr />
 
-            <div style={{display: "flex",gap: "20px"}}>
+            <div style={{display: "flex",gap: "20px", alignItems: "flex-start"}}>
 
-                <DocumentViewer file={selectedFile}/>
+                <div style={{background: "white", padding: "20px", borderRadius: "8px", width: "50%"}}> 
+                    <DocumentViewer file={selectedFile}/>
+                </div>
 
-                <ExtractedDataCard invoiceData={invoiceData}/>
+                <div style={{background: "white", padding: "20px", borderRadius: "8px", width: "50%"}}> 
+                    <ExtractedDataCard invoiceData={invoiceData}/>
+                </div>
+
+                
 
             </div>
+        </div>
 
-        </>
+        </div>
 
     );
 }
